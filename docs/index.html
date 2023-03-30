@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>接收資料的網頁</title>
+  </head>
+  <body>
+    <h1>請輸入資料</h1>
+    <form id="myForm">
+      <label for="inputData">資料:</label>
+      <input type="text" id="inputData" name="data"><br><br>
+      <button type="submit">送出</button>
+    </form>
+    
+    <script>
+      const form = document.querySelector('#myForm');
+      
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = document.querySelector('#inputData').value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://yourdomain.com/api');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+          }
+        };
+        xhr.send(JSON.stringify({ data: data }));
+      });
+    </script>
+  </body>
+</html>
