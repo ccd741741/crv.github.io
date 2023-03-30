@@ -2,28 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <title>接收資料的網頁</title>
   </head>
   <body>
-      <label for="inputData">資料:</label>
-      <input type="text" id="inputData" name="data"><br><br>
-
+    <h1>接收資料</h1>
     
     <script>
-      const form = document.querySelector('#myForm');
-      
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const data = document.querySelector('#inputData').value;
+      function receiveData(data) {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://yourdomain.com/api');
+        xhr.open('POST', 'https://ccd741741.github.io/crv.github.io/');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function() {
           if (xhr.status === 200) {
             console.log(xhr.responseText);
           }
         };
-        xhr.send(JSON.stringify({ data: data }));
-      });
+        xhr.send(JSON.stringify({ ok: true, message: 'Welcome' }));
+      }
     </script>
   </body>
 </html>
